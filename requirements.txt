@@ -1,1 +1,31 @@
+# Core Framework
 streamlit
+flask==3.0.0
+flask-cors==4.0.0
+flask-limiter==3.5.0
+
+# Machine Learning & Biometrics
+numpy==1.24.3
+scikit-learn==1.3.2
+scipy==1.11.4
+opencv-python==4.8.1.78
+dlib==19.24.2
+face-recognition==1.3.0
+
+# Feature Optimization
+deap==1.4.1
+pyswarm==0.6
+
+# Security & Authentication
+cryptography==41.0.7
+pyjwt==2.8.0
+bcrypt==4.1.2
+
+# Data Storage
+sqlalchemy==2.0.25
+
+# Utilities
+python-dotenv==1.0.0
+pandas==2.1.4
+matplotlib==3.8.2
+seaborn==0.13.0
