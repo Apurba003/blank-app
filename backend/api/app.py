@@ -158,7 +158,8 @@ def register_user():
             'success': False,
             'error': str(e)
         })
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Registration failed. Please try again.'}), 500
 
 
 # Keystroke enrollment endpoint
@@ -217,7 +218,8 @@ def enroll_keystroke():
             'success': False,
             'error': str(e)
         })
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Enrollment failed. Please try again.'}), 500
 
 
 # Face enrollment endpoint
@@ -282,7 +284,8 @@ def enroll_face():
             'success': False,
             'error': str(e)
         })
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Enrollment failed. Please try again.'}), 500
 
 
 # Keystroke authentication endpoint
@@ -349,7 +352,8 @@ def authenticate_keystroke():
             'success': False,
             'error': str(e)
         })
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Authentication failed. Please try again.'}), 500
 
 
 # Face authentication endpoint
@@ -413,7 +417,8 @@ def authenticate_face():
             'success': False,
             'error': str(e)
         })
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Authentication failed. Please try again.'}), 500
 
 
 # Multi-factor authentication endpoint
@@ -516,7 +521,8 @@ def authenticate_mfa():
             'success': False,
             'error': str(e)
         })
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Authentication failed. Please try again.'}), 500
 
 
 # System metrics endpoint
@@ -528,7 +534,8 @@ def get_system_metrics(current_user):
         metrics = database.get_system_metrics()
         return jsonify(metrics), 200
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Failed to retrieve metrics.'}), 500
 
 
 # User status endpoint
@@ -551,7 +558,8 @@ def get_user_status(current_user, user_id):
         }), 200
         
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        # Don't expose internal error details to users
+        return jsonify({'error': 'Failed to retrieve user status.'}), 500
 
 
 if __name__ == '__main__':
@@ -559,5 +567,6 @@ if __name__ == '__main__':
     os.makedirs('storage/templates', exist_ok=True)
     os.makedirs('storage/logs', exist_ok=True)
     
-    # Run app
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Run app (debug mode from environment variable, defaults to False for security)
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(host='0.0.0.0', port=5000, debug=debug_mode)
