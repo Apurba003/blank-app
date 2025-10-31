@@ -1,5 +1,20 @@
 .streamlit/secrets.toml
 
+# Node modules and frontend build
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.DS_Store
+*.log
+
+# Storage and data
+storage/
+*.db
+
+# Environment files
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
